@@ -5,50 +5,36 @@
     "icon": "minecraft:lightning_rod",
     "gui_display_type": "tree",
     "abilities": {
-        "thunder-test": {
-            "type": "palladium:dummy",
-            "icon": "minecraft:blaze_rod",
-            "title": "lightning",
-            "bar_color": "blue",
-            "hidden": false,
-            "hidden_in_bar": false,
-            "list_index": 0,
+        "electric_Blast": {
+            "type": "palladium:energy_beam",
+            "icon": "minecraft:lightning_rod",
+            "title": "Electric Blast",
+            "bar_color": "light_blue",
+            "list_index": -1,
             "gui_position": "null",
-            "description": "null",
+            "description": "Shooting out Electricity",
+            "energy_beam": "metahumans:electric_laser",
+            "damage_type": "null",
+            "damage": 5,
+            "max_distance": 30,
+            "speed": 0.5,
+            "set_on_fire_seconds": 0,
+            "cause_fire": false,
+            "smelt_blocks": false,
+            "commands_on_block_hit": [],
+            "commands_on_entity_hit": [],
             "conditions": {
                 "enabling": [
-                    {
-                        "type": "palladium:action",
-                        "cooldown": 0,
-                        "key_type": "key_bind",
-                        "needs_empty_hand": false,
-                        "allow_scrolling_when_crouching": true
-                    }
+                                                        {
+                                                            "type": "palladium:held",
+                                                            "cooldown": 0,
+                                                            "key_type": "key_bind",
+                                                            "needs_empty_hand": false,
+                                                            "allow_scrolling_when_crouching": true
+                                                        }
                 ],
                 "unlocking": []
-            }
-        },
-        "thunder-blast": {
-            "type": "palladium:dummy",
-            "icon": "minecraft:blaze_rod",
-            "title": "lightning beam",
-            "bar_color": "blue",
-            "hidden": false,
-            "hidden_in_bar": false,
-            "list_index": 1,
-            "gui_position": "null",
-            "description": "null",
-            "conditions": {
-                "enabling": [
-                    {
-                        "type": "palladium:action",
-                        "cooldown": 0,
-                        "key_type": "key_bind",
-                        "needs_empty_hand": false,
-                        "allow_scrolling_when_crouching": true
-                    }
-                ],
-                "unlocking": []
+                }
             }
         }
     }
