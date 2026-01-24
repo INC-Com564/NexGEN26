@@ -1,41 +1,38 @@
 {
-    "name": "Electric Metahuman",
-    "persistent_data": true,
-    "background": "minecraft:textures/block/white_wool.png",
-    "icon": "minecraft:lightning_rod",
-    "gui_display_type": "tree",
-    "abilities": {
-        "electric_Blast": {
-            "type": "palladium:energy_beam",
-            "icon": "minecraft:lightning_rod",
-            "title": "Electric Blast",
-            "bar_color": "light_blue",
-            "list_index": -1,
-            "gui_position": "null",
-            "description": "Shooting out Electricity",
-            "energy_beam": "metahumans:electric_laser",
-            "damage_type": "null",
-            "damage": 5,
-            "max_distance": 30,
-            "speed": 0.5,
-            "set_on_fire_seconds": 0,
-            "cause_fire": false,
-            "smelt_blocks": false,
-            "commands_on_block_hit": [],
-            "commands_on_entity_hit": [],
-            "conditions": {
-                "enabling": [
-                                                        {
-                                                            "type": "palladium:held",
-                                                            "cooldown": 0,
-                                                            "key_type": "key_bind",
-                                                            "needs_empty_hand": false,
-                                                            "allow_scrolling_when_crouching": true
-                                                        }
-                ],
-                "unlocking": []
-                }
-            }
-        }
+  "name": "Electric Metahuman",
+  "persistent_data": true,
+  "background": "minecraft:textures/block/white_wool.png",
+  "icon": "minecraft:lightning_rod",
+  "gui_display_type": "tree",
+  "abilities": {
+    "electric_Blast": {
+      "type": "palladium:energy_beam",
+      "icon": "minecraft:lightning_rod",
+      "title": "Electric Blast",
+      "bar_color": "light_blue",
+      "list_index": -1,
+      "description": "Shooting out Electricity",
+      "energy_beam": "metahumans:electric_laser",
+      "damage": 5.0,
+      "max_distance": 30.0,
+      "speed": 0.5,
+      "set_on_fire_seconds": 0,
+      "cause_fire": false,
+      "smelt_blocks": false,
+      "commands_on_block_hit": [],
+      "commands_on_entity_hit": [],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:held",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true
+          }
+        ],
+        "unlocking": []
+      }
     }
+  }
 }

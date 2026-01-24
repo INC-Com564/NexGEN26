@@ -1,13 +1,6 @@
 {
     "pack": {
-        "id": "metahumans",
         "pack_format": 15,
-        "description": "Give users/players metahuman powers",
-        "version": "1.0.0"
-    },
-    "dependencies": {
-        "common": {},
-        "fabric": {},
-        "forge": {}
+        "description": "NexGEN26 - Metahuman Powers Addon Pack"
     }
 }
