@@ -1,0 +1,12 @@
+{
+  "type": "palladium:lightning",
+  "segments": 8,
+  "frequency": 1,
+  "spread": 8.0,
+  "glow_color": "#0077FF",
+  "core_color": "#A0E7FF",
+  "size": 1.0,
+  "bloom": 4,
+  "spacing": 0.3,
+  "lifetime": 8
+}
