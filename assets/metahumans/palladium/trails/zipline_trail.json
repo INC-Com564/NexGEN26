@@ -3,12 +3,12 @@
   "segments": 14,
   "spacing": 0.1,
   "lifetime": 6,
-  "size": 1.8,
-  "bloom": 5,
+  "size": 1.5,
+  "bloom": 6,
   "colors": [
-    "#2E74FF",
-    "#4FA3FF",
-    "#9FD8FF",
-    "#E6F4FF"
+    "#00FFFF",
+    "#00CED1",
+    "#6A5ACD",
+    "#4B0082"
   ]
 }
