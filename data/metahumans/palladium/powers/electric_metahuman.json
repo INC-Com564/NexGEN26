@@ -22,159 +22,120 @@
       "commands_on_block_hit": [],
       "commands_on_entity_hit": [],
       "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:held",
-            "cooldown": 0,
-            "key_type": "key_bind",
-            "needs_empty_hand": false,
-            "allow_scrolling_when_crouching": true
-          }
-        ],
+        "enabling": [{"type": "palladium:held", "cooldown": 0, "key_type": "key_bind", "needs_empty_hand": false, "allow_scrolling_when_crouching": true}],
         "unlocking": []
       }
     },
-    "lightning_form": {
-      "type": "palladium:trail",
-      "icon": "minecraft:lightning_rod",
-      "title": "Lightning Form",
+    "speed_buff_toggle": {
+      "type": "palladium:command",
+      "icon": "minecraft:sugar",
+      "title": "Speed Buff Toggle",
       "bar_color": "light_blue",
       "list_index": -2,
-      "description": "Transform into lightning and fly around",
-      "trail": "metahumans:lightning_form",
+      "description": "Toggle a burst of speed and agility",
+      "commands": [
+        "effect give @s minecraft:speed 10 2 true",
+        "effect give @s minecraft:jump_boost 10 1 true",
+        "execute at @s run particle minecraft:electric_spark ~ ~0.5 ~ 0.6 0.6 0.6 0.2 25",
+        "execute at @s run particle minecraft:sonic_boom ~ ~1 ~ 0 0 0 0 1",
+        "execute at @s run playsound minecraft:entity.wither.shoot player @a ~ ~ ~ 0.8 1.6"
+      ],
       "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:held",
-            "cooldown": 0,
-            "key_type": "key_bind",
-            "needs_empty_hand": false,
-            "allow_scrolling_when_crouching": true
-          }
-        ],
+        "enabling": [{"type": "palladium:held", "cooldown": 8, "key_type": "key_bind", "needs_empty_hand": false, "allow_scrolling_when_crouching": true, "key": "key.keyboard.x"}],
         "unlocking": []
       }
     },
-    "lightning_speed_boost": {
-      "type": "palladium:attribute_modifier",
-      "icon": "minecraft:elytra",
-      "title": "Lightning Speed",
-      "bar_color": "light_blue",
-      "list_index": -1,
-      "hidden": true,
-      "hidden_in_bar": true,
-      "description": "Fly faster in lightning form",
-      "attribute": "palladium:flight_speed",
-      "amount": 2.50,
-      "operation": 0,
-      "uuid": "11111111-2222-3333-4444-555555555555",
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:held",
-            "cooldown": 0,
-            "key_type": "key_bind",
-            "needs_empty_hand": false,
-            "allow_scrolling_when_crouching": true
-          }
-        ],
-        "unlocking": []
-      }
-    },
-"shadow_invisibility": {
+    "shadow_invisibility": {
       "type": "palladium:invisibility",
       "icon": "minecraft:wither_skeleton_skull",
       "title": "Shadow Cloak",
       "bar_color": "gray",
-      "list_index": 4,
+      "list_index": 1,
       "description": "Become translucent like a shadow",
       "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:held",
-            "cooldown": 0,
-            "key_type": "key_bind",
-            "needs_empty_hand": false,
-            "allow_scrolling_when_crouching": true
-          }
-        ],
+        "enabling": [{"type": "palladium:held", "cooldown": 0, "key_type": "key_bind", "needs_empty_hand": false, "allow_scrolling_when_crouching": true}],
         "unlocking": []
       }
     },
-    "smoke_flight_boost": {
-      "type": "palladium:attribute_modifier",
-      "icon": "minecraft:elytra",
-      "title": "Shadow Speed",
-      "bar_color": "gray",
-      "list_index": 2,
-      "description": "Move at incredible shadow speed",
-      "attribute": "palladium:flight_speed",
-      "amount": 0.40,
-      "operation": 0,
-      "uuid": "b5c0f8e4-3f5d-4f2b-a7f6-1234567890ab",
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:held",
-            "cooldown": 0,
-            "key_type": "key_bind",
-            "needs_empty_hand": false,
-            "allow_scrolling_when_crouching": true
-          }
-        ],
-        "unlocking": []
+   "plasma_fist": {
+  "type": "palladium:command",
+  "icon": "minecraft:fire_charge",
+  "title": "Plasma Fist",
+  "bar_color": "light_blue",
+  "list_index": -4,
+  "description": "Left Click: Strike with energized lightning knockback",
+ "commands": [
+  "execute at @s run particle minecraft:electric_spark ~ ~1 ~ 0.5 0.5 0.5 0.08 20",
+  "execute as @e[type=!minecraft:player,distance=..4] at @s run damage @s 6 minecraft:lightning_bolt",
+  "execute as @e[type=!minecraft:player,distance=..4] at @s run tp @s ^ ^ ^-2",
+  "execute at @s run playsound minecraft:entity.lightning_bolt.impact player @a ~ ~ ~ 0.5 1.8"
+],
+  "conditions": {
+    "enabling": [
+      {
+        "type": "palladium:held",
+        "cooldown": 12,
+        "key_type": "key_bind",
+        "needs_empty_hand": true,
+        "allow_scrolling_when_crouching": true,
+        "key": "key.mouse.left"
       }
-    },
-    "smoke_hover_boost": {
-      "type": "palladium:attribute_modifier",
-      "icon": "minecraft:elytra",
-      "title": "Shadow Glide",
-      "bar_color": "gray",
-      "list_index": 3,
-      "description": "Swift shadow maneuverability",
-      "attribute": "palladium:levitation_speed",
-      "amount": 0.35,
-      "operation": 0,
-      "uuid": "c6d1f9f5-4b6c-4c1e-b8e7-abcdefabcdef",
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:held",
-            "cooldown": 0,
-            "key_type": "key_bind",
-            "needs_empty_hand": false,
-            "allow_scrolling_when_crouching": true
-          }
-        ],
-        "unlocking": []
+    ],
+    "unlocking": []
+  }
+},
+   "plasma_wave": {
+  "type": "palladium:command",
+  "icon": "minecraft:amethyst_shard",
+  "title": "Plasma Wave",
+  "bar_color": "light_blue",
+  "list_index": -5,
+  "description": "Z: Discharge a pulsing plasma wave that slows and repels enemies",
+  "commands": [
+    "execute at @s run particle minecraft:electric_spark ~ ~1 ~ 2 2 2 0.1 60",
+    "execute at @s run particle minecraft:flame ~ ~1 ~ 1.5 1.5 1.5 0.05 30",
+    "execute at @s run particle minecraft:sonic_boom ~ ~1 ~ 0 0 0 0 1",
+    "execute at @s as @e[type=!minecraft:player,distance=..10] at @s run tp @s ^ ^ ^-2",
+    "execute at @s run effect give @e[type=!minecraft:player,distance=..10] minecraft:slowness 4 2 true",
+    "execute at @s run playsound minecraft:entity.lightning_bolt.thunder player @a ~ ~ ~ 0.7 1.2",
+    "execute at @s run playsound minecraft:entity.generic.explode player @a ~ ~ ~ 0.5 0.8"
+  ],
+  "conditions": {
+    "enabling": [
+      {
+        "type": "palladium:held",
+        "cooldown": 30,
+        "key": "key.keyboard.z"
       }
-    },
-    "plasma_fist": {
-      "type": "palladium:command",
-      "icon": "minecraft:fire_charge",
-      "title": "Plasma Fist",
-      "bar_color": "light_blue",
-      "list_index": -3,
-      "description": "When the player clicks the left mouse key, their fist energizes and they can do knockback and electric damage",
-      "commands": [
-        "execute as @e[type=!minecraft:player,distance=..4] at @s run damage @s 6 minecraft:lightning_bolt",
-        "execute as @e[type=!minecraft:player,distance=..4] at @s run tp @s ^ ^ ^-2",
-        "execute at @s run particle minecraft:electric_spark ~ ~1 ~ 0.5 0.5 0.5 0.08 20",
-        "execute at @s run playsound minecraft:entity.zombie.attack_iron_door player @s"
-      ],
-      "conditions": {
-        "enabling": [
-          {
-            "type": "palladium:held",
-            "cooldown": 20,
-            "key_type": "key_bind",
-            "needs_empty_hand": false,
-            "allow_scrolling_when_crouching": true,
-            "key": "key.mouse.left"
-          }
-        ],
-        "unlocking": []
+    ]
+  }
+},
+   "electric_overload": {
+  "type": "palladium:command",
+  "icon": "minecraft:lightning_rod",
+  "title": "Electric Overload",
+  "bar_color": "light_blue",
+  "list_index": 2,
+  "description": "V: Discharge power to knockback and blind nearby enemies",
+  "commands": [
+  "execute as @a[distance=..1,limit=1] at @s run particle minecraft:electric_spark ~ ~1 ~ 1.5 1.5 1.5 0.12 150",
+  "execute as @a[distance=..1,limit=1] at @s run effect give @e[type=!minecraft:player,distance=..8] minecraft:blindness 3 1 true",
+  "execute as @a[distance=..1,limit=1] at @s as @e[type=!minecraft:player,distance=..8] at @s run tp @s ^ ^ ^-1.5",
+  "execute as @a[distance=..1,limit=1] at @s run playsound minecraft:entity.lightning_bolt.thunder player @a ~ ~ ~ 0.5 1.2"
+],
+  "conditions": {
+    "enabling": [
+      {
+        "type": "palladium:held",
+        "cooldown": 25,
+        "key_type": "key_bind",
+        "needs_empty_hand": false,
+        "allow_scrolling_when_crouching": true,
+        "key": "key.keyboard.v"
       }
-    }
+    ],
+    "unlocking": []
+  }
+}
   }
 }

@@ -62,7 +62,7 @@
       "list_index": 2,
       "description": "Change gravity for selected targets. Either throw them into the air or crush them with their own weight.",
       "commands": [
-        "execute as @e[tag=vector_target] at @s run particle crit ~ ~ ~ 0.5 0.5 0.5 0 20",
+        "execute as @e[tag=vector_target] at @s run particle dust 0.98 0.165 0.333 1.5 ~ ~ ~ 0.5 0.5 0.5 0 30",
         "execute as @e[tag=vector_target] run effect give @s minecraft:levitation 3 1",
         "execute as @e[tag=vector_target] run data modify entity @s Motion[1] set value 1.5d"
       ],
@@ -89,7 +89,7 @@
       "description": "Select a place in range and drag yourself to that point.",
       "commands": [
         "execute as @s at @s run tp @s ^ ^ ^10",
-        "execute as @s at @s run particle electric_spark ~ ~ ~ 0.5 0.5 0.5 0 20",
+        "execute as @s at @s run particle dust 0.98 0.165 0.333 1.5 ~ ~ ~ 0.5 0.5 0.5 0 25",
         "execute as @s run playsound minecraft:entity.enderman.teleport player @s"
       ],
       "conditions": {
