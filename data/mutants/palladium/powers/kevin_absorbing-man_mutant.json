@@ -1,0 +1,91 @@
+{
+    "name": "Devilin Levin",
+    "persistent_data": true,
+    "background": "minecraft:textures/block/white_wool.png",
+    "icon": "minecraft:netherite_pickaxe",
+    "gui_display_type": "tree",
+    "description": "Touch or hold a block and turn into it. Gain strength and defense based on the block, but become slower depending on how much defense you have. Arms can become weapons: mace, hammer, and scythe. Leap: a jump ability that's on a 5 second cooldown.",
+    "abilities": {
+        "select": {
+            "type": "palladium:command",
+            "icon": "minecraft:stick",
+            "title": "Absorb",
+            "bar_color": "gray",
+            "list_index": 0,
+            "description": "Touch or hold a block to absorb its properties and turn into it.",
+            "commands": [
+                "execute as @s at @s run function mutants:powers/kevin"
+            ],
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:held",
+                        "cooldown": 0,
+                        "key_type": "key_bind",
+                        "needs_empty_hand": false,
+                        "allow_scrolling_when_crouching": true,
+                        "key": "key.keyboard.x"
+                    }
+                ],
+                "unlocking": []
+            }
+        },
+        "dna_prototype": {
+            "type": "alienevo:apply_dna_from_prototype_core",
+            "property": "alienevodnaapplication"
+        },
+        "dna_omniverse": {
+            "type": "aeo:apply_dna_from_omniverse_core",
+            "property": "alienevodnaapplication_omniverse"
+        },
+        "dna_completed": {
+            "type": "reds:apply_dna_from_completed_core",
+            "property": "alienevodnaapplication"
+        },
+        "dna_recalibrated": {
+            "type": "reds:apply_dna_from_recal_core",
+            "property": "alienevodnaapplication"
+        },
+        "dna_ultimate": {
+            "type": "reds:apply_dna_from_ult_core",
+            "property": "alienevodnaapplication"
+        },
+        "dna_reboot": {
+            "type": "reds:apply_dna_from_reboottwo_core",
+            "property": "alienevodnaapplication"
+        },
+        "transform": {
+            "type": "alienevo:omnitrix_transform",
+            "icon": "minecraft:emerald",
+            "title": "Transform",
+            "bar_color": "green",
+            "list_index": 1,
+            "description": "Transform into an alien using absorbed DNA.",
+            "property": "omnitrix_cycle",
+            "transform_sound": "prototype",
+            "use_randomizer": false,
+            "use_rarity_unlock": false
+        },
+        "cycle_next": {
+            "type": "alienevo:omnitrix_cycle_next",
+            "icon": "minecraft:arrow",
+            "title": "Next Alien",
+            "bar_color": "cyan",
+            "list_index": 2,
+            "description": "Cycle to the next alien form.",
+            "property": "omnitrix_cycle",
+            "next_property": "omnitrix_next_alien",
+            "next_next_property": "omnitrix_next_next_alien",
+            "prev_property": "omnitrix_prev_alien",
+            "prev_prev_property": "omnitrix_prev_prev_alien"
+        },
+        "detransform": {
+            "type": "alienevo:omnitrix_detransform",
+            "icon": "minecraft:red_dye",
+            "title": "Detransform",
+            "bar_color": "red",
+            "list_index": 3,
+            "description": "Return to human form."
+        }
+    }
+}

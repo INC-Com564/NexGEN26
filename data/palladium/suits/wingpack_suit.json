@@ -1,0 +1,13 @@
+{
+  "items": {
+    "chest": "techpowers:wingpack"
+  },
+  "renderers": [
+    {
+      "type": "palladium:geckolib",
+      "model": "kubejs:geo/wingpack.geo.json",
+      "texture": "kubejs:textures/item/wingpack.png",
+      "hide_armor": true
+    }
+  ]
+}

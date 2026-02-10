@@ -1,0 +1,5 @@
+{
+  "parent": "geckolib3:item/geomodel",
+  "geomodel": "techpowers:item/wingpack_converted",
+  "texture": "techpowers:item/wingpack"
+}

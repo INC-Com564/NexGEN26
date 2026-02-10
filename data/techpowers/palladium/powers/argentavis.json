@@ -1,0 +1,182 @@
+{
+  "name": "Argentavis",
+  "description": "The Argentavis series of flight suits are advanced military gear inspired by Falcon (MCU) and Vulture (PS4 Spider-Man).",
+  "persistent_data": true,
+  "background": "minecraft:textures/block/cyan_terracotta.png",
+  "icon": "minecraft:elytra",
+  "gui_display_type": "tree",
+  "abilities": {
+    "wings": {
+      "type": "palladium:command",
+      "icon": "minecraft:elytra",
+      "title": "Wings",
+      "bar_color": "blue",
+      "list_index": 0,
+      "description": "Unfold the wingpack to fly or glide.",
+      "commands": [
+        "effect give @s minecraft:slow_falling 6 0 true",
+        "effect give @s minecraft:levitation 2 0 true",
+        "particle minecraft:cloud ~ ~1 ~ 0.6 0.3 0.6 0.02 15",
+        "playsound minecraft:item.elytra.flying player @s"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:held",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true,
+            "key": "key.keyboard.v"
+          },
+          {
+            "type": "palladium:item_in_slot",
+            "item": {
+              "item": "techpowers:wingpack"
+            },
+            "slot": "chest"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "launch": {
+      "type": "palladium:command",
+      "icon": "minecraft:firework_rocket",
+      "title": "Launch",
+      "bar_color": "blue",
+      "list_index": 1,
+      "description": "Launch upward to escape or start a glide.",
+      "commands": [
+        "data modify entity @s Motion[1] set value 1.2d",
+        "effect give @s minecraft:slow_falling 6 0 true",
+        "particle minecraft:cloud ~ ~1 ~ 0.5 0.1 0.5 0.05 20",
+        "playsound minecraft:entity.phantom.flap player @s"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:held",
+            "cooldown": 10,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true,
+            "key": "key.keyboard.x"
+          },
+          {
+            "type": "palladium:item_in_slot",
+            "item": {
+              "item": "techpowers:wingpack"
+            },
+            "slot": "chest"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "dive_bomb": {
+      "type": "palladium:command",
+      "icon": "minecraft:anvil",
+      "title": "Dive Bomb",
+      "bar_color": "blue",
+      "list_index": 2,
+      "description": "Dive into the ground, blasting foes upward.",
+      "commands": [
+        "data modify entity @s Motion[1] set value -2.2d",
+        "execute at @s run particle minecraft:explosion ~ ~ ~ 0.6 0.2 0.6 0.1 20",
+        "execute as @e[distance=..5,type=!player] run damage @s 8 minecraft:player_attack",
+        "execute as @e[distance=..5,type=!player] run effect give @s minecraft:levitation 1 1 true",
+        "playsound minecraft:entity.ender_dragon.flap player @s"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:held",
+            "cooldown": 12,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true,
+            "key": "key.keyboard.g"
+          },
+          {
+            "type": "palladium:item_in_slot",
+            "item": {
+              "item": "techpowers:wingpack"
+            },
+            "slot": "chest"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "death_roll": {
+      "type": "palladium:command",
+      "icon": "minecraft:shield",
+      "title": "Death Roll",
+      "bar_color": "blue",
+      "list_index": 3,
+      "description": "Spin to pull enemies in and reduce incoming damage. Can be combined with Dive Bomb.",
+      "commands": [
+        "effect give @s minecraft:resistance 3 2 true",
+        "execute as @e[distance=..6,type=!player] at @s run tp @s ^ ^ ^-1",
+        "execute at @s run particle minecraft:sweep_attack ~ ~1 ~ 1 1 1 0 25",
+        "playsound minecraft:entity.player.attack.sweep player @s"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:held",
+            "cooldown": 8,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true,
+            "key": "key.keyboard.r"
+          },
+          {
+            "type": "palladium:item_in_slot",
+            "item": {
+              "item": "techpowers:wingpack"
+            },
+            "slot": "chest"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "fly_by": {
+      "type": "palladium:command",
+      "icon": "minecraft:tnt",
+      "title": "Fly By",
+      "bar_color": "blue",
+      "list_index": 4,
+      "description": "Drop explosives on your foes while flying past.",
+      "commands": [
+        "summon minecraft:tnt ~ ~-1 ~ {Fuse:40}",
+        "summon minecraft:tnt ~ ~-1 ~ {Fuse:40}",
+        "particle minecraft:smoke ~ ~1 ~ 0.6 0.6 0.6 0.01 20",
+        "playsound minecraft:entity.tnt.primed player @s"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:held",
+            "cooldown": 15,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true,
+            "key": "key.keyboard.f"
+          },
+          {
+            "type": "palladium:item_in_slot",
+            "item": {
+              "item": "techpowers:wingpack"
+            },
+            "slot": "chest"
+          }
+        ],
+        "unlocking": []
+      }
+    }
+  },
+  "armor_renderer": "techpowers:wingpack"
+}

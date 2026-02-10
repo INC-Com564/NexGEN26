@@ -1,0 +1,17 @@
+{
+  "textures": "techpowers:textures/item/wingpack.png",
+  "model_layers": "palladium:suit/humanoid#main",
+  "hide_second_layer": true,
+  "render_layers": [
+    {
+      "model_layer": "palladium:suit/humanoid#main",
+      "texture": "techpowers:textures/item/wingpack.png"
+    },
+    {
+      "model_layer": "palladium:suit/humanoid#main",
+      "texture": "techpowers:textures/item/wingpack_emissive.png",
+      "blend_mode": "add",
+      "force_emissive": true
+    }
+  ]
+}
