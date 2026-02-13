@@ -1,0 +1,452 @@
+{
+    "name": "Miss Moon",
+    "description": "A Zatanna variant who kept her affinity for magic and gained Moon Knight's armor, powers, and weapons.",
+    "persistent_data": true,
+    "background": "minecraft:textures/block/white_wool.png",
+    "icon": "minecraft:enchanted_book",
+    "primary_color": "#cfb196",
+    "secondary_color": "#8e8e8e",
+    "abilities": {
+        "activate": {
+            "type": "palladium:animation_timer",
+            "title": {
+                "translate": "ability.pantheonsent.moon_knight.summon_suit"
+            },
+            "list_index": 0,
+            "max_value": 19,
+            "hidden_in_bar": false,
+            "hidden": false,
+            "icon": "pantheonsent:textures/icon/moon_knight.png",
+            "conditions": {
+                "enabling": {
+                    "type": "palladium:toggle",
+                    "ticks": 3600,
+                    "cooldown": 12000
+                }
+            }
+        },
+        "shrink_overlay": {
+            "type": "palladium:shrink_body_overlay",
+            "max_value": 5,
+            "conditions": {
+                "enabling": {
+                    "type": "palladium:ability_integer_property",
+                    "power": "magic:miss_moon",
+                    "ability": "activate",
+                    "property": "value",
+                    "min": 1,
+                    "max": 20
+                }
+            }
+        },
+        "hide_arm_layers": {
+            "type": "palladium:hide_body_part",
+            "body_parts": [
+                "right_arm_overlay",
+                "left_arm_overlay"
+            ],
+            "conditions": {
+                "enabling": {
+                    "type": "palladium:ability_integer_property",
+                    "power": "magic:miss_moon",
+                    "ability": "activate",
+                    "property": "value",
+                    "min": 10,
+                    "max": 20
+                }
+            }
+        },
+        "render_layer": {
+            "type": "palladium:render_layer_by_accessory_slot",
+            "default_layer": "pantheonsent:moon_knight",
+            "accessory_slot": "pantheonsent:moon_knight_suit",
+            "hidden_in_bar": true,
+            "hidden": true
+        },
+        "throw_dart": {
+            "type": "palladium:projectile",
+            "icon": "pantheonsent:textures/icon/crescent_dart.png",
+            "title": {
+                "translate": "ability.pantheonsent.moon_knight.crescent_dart"
+            },
+            "entity_type": "pantheonsent:crescent_dart",
+            "list_index": 1,
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "activate"
+                    },
+                    {
+                        "type": "palladium:not",
+                        "conditions": [
+                            {
+                                "type": "palladium:ability_enabled",
+                                "ability": "blocking"
+                            },
+                            {
+                                "type": "palladium:accessory_selected",
+                                "accessory_slot": "pantheonsent:moon_knight_suit",
+                                "accessory": "pantheonsent:mr_knight"
+                            }
+                        ]
+                    }
+                ],
+                "enabling": {
+                    "type": "palladium:action",
+                    "cooldown": 60,
+                    "key_type": "left_click",
+                    "needs_empty_hand": true
+                }
+            }
+        },
+        "throw_baton": {
+            "type": "palladium:projectile",
+            "icon": "pantheonsent:textures/icon/baton.png",
+            "title": {
+                "translate": "ability.pantheonsent.moon_knight.baton"
+            },
+            "entity_type": "pantheonsent:thrown_baton",
+            "list_index": 1,
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "activate"
+                    },
+                    {
+                        "type": "palladium:accessory_selected",
+                        "accessory_slot": "pantheonsent:moon_knight_suit",
+                        "accessory": "pantheonsent:mr_knight"
+                    },
+                    {
+                        "type": "palladium:not",
+                        "conditions": [
+                            {
+                                "type": "palladium:ability_enabled",
+                                "ability": "blocking"
+                            }
+                        ]
+                    }
+                ],
+                "enabling": {
+                    "type": "palladium:action",
+                    "cooldown": 60,
+                    "key_type": "left_click",
+                    "needs_empty_hand": true
+                }
+            }
+        },
+        "gliding": {
+            "type": "pantheonsent:moon_knight_gliding",
+            "hidden_in_bar": true,
+            "hidden": true,
+            "conditions": {
+                "unlocking": {
+                    "type": "palladium:ability_enabled",
+                    "ability": "activate"
+                },
+                "enabling": {
+                    "type": "palladium:crouching"
+                }
+            }
+        },
+        "blocking": {
+            "type": "pantheonsent:moon_knight_blocking",
+            "icon": "pantheonsent:textures/icon/moon_knight_blocking.png",
+            "list_index": 2,
+            "conditions": {
+                "unlocking": {
+                    "type": "palladium:ability_enabled",
+                    "ability": "activate"
+                },
+                "enabling": {
+                    "type": "palladium:held",
+                    "key_type": "right_click",
+                    "needs_empty_hand": true
+                }
+            }
+        },
+        "stealth": {
+            "type": "palladium:invisibility",
+            "title": {
+                "translate": "ability.pantheonsent.moon_knight.summon_stealth"
+            },
+            "icon": "pantheonsent:textures/icon/stealth.png",
+            "list_index": 3,
+            "hidden": false,
+            "hidden_in_bar": false,
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "activate"
+                    },
+                    {
+                        "type": "palladium:brightness_at_position",
+                        "min_brightness": 0,
+                        "max_brightness": 5
+                    }
+                ],
+                "enabling": {
+                    "type": "palladium:activation",
+                    "ticks": 100,
+                    "cooldown": 600
+                }
+            }
+        },
+        "sculk_immunity": {
+            "type": "palladium:sculk_immunity",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "conditions": {
+                "enabling": {
+                    "type": "palladium:ability_enabled",
+                    "ability": "stealth"
+                }
+            }
+        },
+        "healing": {
+            "type": "palladium:command",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "first_tick_commands": [
+                "effect give @s minecraft:regeneration 5 2 true"
+            ],
+            "last_tick_commands": [],
+            "commands": [],
+            "conditions": {
+                "unlocking": {
+                    "type": "palladium:ability_enabled",
+                    "ability": "activate"
+                }
+            }
+        },
+        "resistance": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "attribute": "minecraft:generic.armor",
+            "amount": 12,
+            "operation": 0,
+            "uuid": "d28fbccf-96c1-4443-85ae-933fef7a6554",
+            "conditions": {
+                "unlocking": {
+                    "type": "palladium:ability_enabled",
+                    "ability": "activate"
+                }
+            }
+        },
+        "strength": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "attribute": "minecraft:generic.attack_damage",
+            "amount": 6,
+            "operation": 0,
+            "uuid": "d28fbccf-96c1-4443-85ae-933fef7a6554",
+            "conditions": {
+                "unlocking": {
+                    "type": "palladium:ability_enabled",
+                    "ability": "activate"
+                }
+            }
+        },
+        "speed": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "attribute": "minecraft:generic.movement_speed",
+            "amount": 0.4,
+            "operation": 2,
+            "uuid": "d28fbccf-96c1-4443-85ae-933fef7a6554",
+            "conditions": {
+                "unlocking": {
+                    "type": "palladium:ability_enabled",
+                    "ability": "activate"
+                }
+            }
+        },
+        "jump": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "attribute": "minecraft:generic.movement_speed",
+            "amount": 0.5,
+            "operation": 2,
+            "uuid": "d28fbccf-96c1-4443-85ae-933fef7a6554",
+            "conditions": {
+                "unlocking": {
+                    "type": "palladium:ability_enabled",
+                    "ability": "activate"
+                }
+            }
+        },
+        "leaping": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "attribute": "palladium:leaping",
+            "amount": 3,
+            "operation": 0,
+            "uuid": "d28fbccf-96c1-4443-85ae-933fef7a6554",
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:sprinting"
+                    },
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "activate"
+                    }
+                ]
+            }
+        },
+        "god_stalked": {
+            "type": "pantheonsent:god_stalked"
+        },
+        "restrict_slots": {
+            "type": "palladium:restrict_slots",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "slots": [
+                "head",
+                "chest",
+                "legs",
+                "feet"
+            ],
+            "conditions": {
+                "unlocking": {
+                    "type": "palladium:ability_enabled",
+                    "ability": "activate"
+                }
+            }
+        },
+        "name_change": {
+            "type": "palladium:name_change",
+            "name": {
+                "translate": "power.pantheonsent.moon_knight"
+            },
+            "conditions": {
+                "unlocking": {
+                    "type": "palladium:ability_enabled",
+                    "ability": "activate"
+                }
+            }
+        },
+        "spell_arcane_bolt": {
+            "type": "palladium:command",
+            "icon": "minecraft:amethyst_shard",
+            "title": "Arcane Bolt",
+            "bar_color": "pink",
+            "list_index": 4,
+            "description": "Launches a burst of arcane energy that damages nearby foes.",
+            "commands": [
+                "playsound minecraft:entity.evoker.cast_spell player @s ~ ~ ~ 0.6 1.3",
+                "execute at @s run particle minecraft:enchanted_hit ~ ~1 ~ 0.6 0.6 0.6 0.2 30",
+                "execute at @s as @e[type=!minecraft:player,distance=..6] run effect give @s minecraft:instant_damage 1 0 true"
+            ],
+            "conditions": {
+                "enabling": {
+                    "type": "palladium:action",
+                    "cooldown": 80,
+                    "key_type": "key_bind",
+                    "key": "key.keyboard.g"
+                }
+            }
+        },
+        "spell_clairvoyance": {
+            "type": "palladium:command",
+            "icon": "minecraft:ender_eye",
+            "title": "Clairvoyance",
+            "bar_color": "pink",
+            "list_index": 5,
+            "description": "See enemies through walls and grant yourself enhanced senses.",
+            "commands": [
+                "execute at @s as @e[type=!minecraft:player,distance=..15] run effect give @s minecraft:glowing 1 0 true"
+            ],
+            "first_tick_commands": [
+                "playsound minecraft:entity.evoker.cast_spell player @s ~ ~ ~ 0.8 1.5",
+                "execute at @s run particle minecraft:portal ~ ~1 ~ 0.6 0.6 0.6 0.1 50",
+                "effect give @s minecraft:night_vision 8 0 true"
+            ],
+            "conditions": {
+                "enabling": {
+                    "type": "palladium:activation",
+                    "ticks": 160,
+                    "cooldown": 150,
+                    "key_type": "key_bind",
+                    "key": "key.keyboard.h"
+                }
+            }
+        },
+        "spell_blink": {
+            "type": "palladium:command",
+            "icon": "minecraft:ender_pearl",
+            "title": "Blink",
+            "bar_color": "pink",
+            "list_index": 6,
+            "description": "Short-range teleport to reposition.",
+            "commands": [
+                "execute at @s run particle minecraft:portal ~ ~1 ~ 0.6 0.6 0.6 0.2 40",
+                "tp @s ^ ^ ^6",
+                "playsound minecraft:entity.enderman.teleport player @s ~ ~ ~ 0.6 1.0"
+            ],
+            "conditions": {
+                "enabling": {
+                    "type": "palladium:action",
+                    "cooldown": 120,
+                    "key_type": "key_bind",
+                    "key": "key.keyboard.b"
+                }
+            }
+        },
+        "spell_mystic_ward": {
+            "type": "palladium:command",
+            "icon": "minecraft:shield",
+            "title": "Mystic Ward",
+            "bar_color": "pink",
+            "list_index": 7,
+            "description": "Conjures a brief protective ward.",
+            "commands": [
+                "playsound minecraft:block.enchantment_table.use player @s ~ ~ ~ 0.6 1.5",
+                "execute at @s run particle minecraft:end_rod ~ ~0.5 ~ 2 2 2 0.08 50",
+                "execute at @s run particle minecraft:ambient_entity_effect ~ ~1 ~ 1.5 1.5 1.5 0.05 30",
+                "effect give @s minecraft:resistance 5 2 true",
+                "effect give @s minecraft:absorption 5 2 true"
+            ],
+            "conditions": {
+                "enabling": {
+                    "type": "palladium:action",
+                    "cooldown": 240,
+                    "key_type": "key_bind",
+                    "key": "key.keyboard.y"
+                }
+            }
+        },
+        "spell_illusions": {
+            "type": "palladium:command",
+            "icon": "minecraft:amethyst_cluster",
+            "title": "Illusions",
+            "bar_color": "light_blue",
+            "list_index": 8,
+            "description": "Confuse enemies and cloak yourself in mystical illusions.",
+            "commands": [
+                "playsound minecraft:entity.illusioner.prepare_summon player @s ~ ~ ~ 0.8 1.3",
+                "execute at @s run particle minecraft:witch ~ ~1 ~ 1.0 1.0 1.0 0.1 60",
+                "effect give @s minecraft:invisibility 10 0 false",
+                "effect give @s minecraft:night_vision 10 0 true",
+                "execute at @s as @e[type=!minecraft:player,distance=..8] run effect give @s minecraft:blindness 3 0 true",
+                "execute at @s as @e[type=!minecraft:player,distance=..8] run effect give @s minecraft:confusion 3 0 true"
+            ],
+            "conditions": {
+                "enabling": {
+                    "type": "palladium:action",
+                    "cooldown": 180,
+                    "key_type": "key_bind",
+                    "key": "key.keyboard.v"
+                }
+            }
+        }
+    }
+}

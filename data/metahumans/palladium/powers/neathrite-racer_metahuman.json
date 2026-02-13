@@ -1,6 +1,6 @@
 {
   "name": "Neathrite Racer",
-  "description": "A soldier who got hit by lightning while exploring an unknown realm.",
+  "description": "A soldier who became a super soldier after being struck by lightning while exploring an unknown realm. Enhanced speed and combat abilities.",
   "persistent_data": true,
   "background": "minecraft:textures/block/white_wool.png",
   "icon": "minecraft:lightning_rod",
@@ -117,8 +117,7 @@
       ],
       "commands": [
         "effect give @s minecraft:speed 1 3 true",
-        "effect give @s minecraft:jump_boost 1 2 true",
-        "execute at @s run particle minecraft:dust 1 0.84 0 1 ~ ~1 ~ 1 1 1 0.1 40"
+        "effect give @s minecraft:jump_boost 1 2 true"
       ],
       "conditions": {
         "enabling": [
@@ -132,12 +131,50 @@
         "unlocking": []
       }
     },
+    "speed_dust_low": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "commands": [
+        "execute at @s run particle minecraft:dust 1 0.84 0 1 ~ ~1 ~ 1 1 1 0.1 40"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "Racer.Velocity",
+            "min_score": 3,
+            "max_score": 89
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "speed_dust_nether": {
+      "type": "palladium:command",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "commands": [
+        "execute at @s run particle minecraft:dust 0.75 0.44 1.0 1 ~ ~1 ~ 1 1 1 0.1 40"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "Racer.Velocity",
+            "min_score": 90,
+            "max_score": 100
+          }
+        ],
+        "unlocking": []
+      }
+    },
     "high_speed": {
       "type": "palladium:command",
       "icon": "minecraft:iron_chestplate",
       "title": "High Speed",
       "bar_color": "light_blue",
-      "list_index": 2,
+      "list_index": 8,
       "hidden": true,
       "description": "Medium velocity - increased speed with glowing Speed Force aura.",
       "commands": [
@@ -194,7 +231,7 @@
       "icon": "minecraft:iron_chestplate",
       "title": "Kinetic Absorption",
       "bar_color": "light_blue",
-      "list_index": 4,
+      "list_index": 3,
       "description": "Absorb kinetic energy from damage and convert it to speed.",
       "first_tick_commands": [
         "playsound minecraft:entity.lightning_bolt.impact player @a ~ ~ ~ 0.6 1.5"
@@ -217,12 +254,128 @@
         "unlocking": []
       }
     },
+    "super_soldier_serum": {
+      "type": "palladium:command",
+      "icon": "minecraft:potion",
+      "title": "Super Soldier Serum",
+      "bar_color": "red",
+      "list_index": 4,
+      "hidden": true,
+      "hidden_in_bar": true,
+      "description": "Passive super soldier enhancements - increased strength and resistance.",
+      "commands": [
+        "effect give @s minecraft:resistance 2 0 true",
+        "effect give @s minecraft:strength 2 0 true"
+      ],
+      "conditions": {
+        "enabling": [],
+        "unlocking": []
+      }
+    },
+    "enhanced_durability": {
+      "type": "palladium:command",
+      "icon": "minecraft:netherite_chestplate",
+      "title": "Enhanced Durability",
+      "bar_color": "red",
+      "list_index": 5,
+      "description": "Super soldier durability - increased damage resistance at high speeds.",
+      "commands": [
+        "effect give @s minecraft:resistance 1 2 true",
+        "effect give @s minecraft:absorption 1 1 true",
+        "execute at @s run particle minecraft:dust 0.5 0.5 0.5 0.8 ~ ~1 ~ 0.5 0.8 0.5 0.1 15"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "Racer.Velocity",
+            "min_score": 50,
+            "max_score": 100
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "tactical_strike": {
+      "type": "palladium:command",
+      "icon": "minecraft:iron_sword",
+      "title": "Tactical Strike",
+      "bar_color": "red",
+      "list_index": 6,
+      "description": "Momentum-enhanced melee strikes deal devastating damage.",
+      "commands": [
+        "effect give @s minecraft:strength 1 3 true",
+        "execute at @s run particle minecraft:sweep_attack ~ ~1 ~ 0.5 0.5 0.5 0.1 5",
+        "execute at @s run particle minecraft:crit ~ ~1 ~ 0.5 0.5 0.5 0.3 20"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "Racer.Velocity",
+            "min_score": 70,
+            "max_score": 100
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "combat_reflexes": {
+      "type": "palladium:command",
+      "icon": "minecraft:ender_eye",
+      "title": "Combat Reflexes",
+      "bar_color": "red",
+      "list_index": 7,
+      "hidden": true,
+      "hidden_in_bar": true,
+      "description": "Enhanced reflexes - night vision and haste for combat awareness.",
+      "commands": [
+        "effect give @s minecraft:night_vision 15 0 true",
+        "effect give @s minecraft:haste 2 1 true"
+      ],
+      "conditions": {
+        "enabling": [],
+        "unlocking": []
+      }
+    },
+    "rapid_regeneration": {
+      "type": "palladium:command",
+      "icon": "minecraft:golden_apple",
+      "title": "Rapid Regeneration",
+      "bar_color": "red",
+      "list_index": 1,
+      "description": "Super soldier healing - accelerated recovery when stationary.",
+      "first_tick_commands": [
+        "playsound minecraft:block.beacon.power_select player @s ~ ~ ~ 0.4 1.5"
+      ],
+      "commands": [
+        "effect give @s minecraft:regeneration 1 2 true",
+        "execute at @s run particle minecraft:heart ~ ~1.5 ~ 0.5 0.5 0.5 0.1 3"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "Racer.Velocity",
+            "min_score": 0,
+            "max_score": 2
+          },
+          {
+            "type": "palladium:action",
+            "cooldown": 10,
+            "key_type": "key_bind",
+            "key": "key.keyboard.r"
+          }
+        ],
+        "unlocking": []
+      }
+    },
     "speed_force_aura": {
       "type": "palladium:trail",
       "icon": "minecraft:lightning_rod",
       "title": "Speed Force Aura",
       "bar_color": "light_blue",
-      "list_index": 10,
+      "list_index": 9,
       "hidden": true,
       "hidden_in_bar": true,
       "description": "Lightning trail when at high velocity.",
@@ -233,7 +386,88 @@
             "type": "palladium:objective_score",
             "objective": "Racer.Velocity",
             "min_score": 60,
+            "max_score": 89
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "speed_force_aura_nether": {
+      "type": "palladium:trail",
+      "icon": "minecraft:lightning_rod",
+      "title": "Speed Force Aura (Nether)",
+      "bar_color": "light_blue",
+      "list_index": 10,
+      "hidden": true,
+      "hidden_in_bar": true,
+      "description": "Nether colors at top speed.",
+      "trail": "metahumans:lightning_speed_force_nether",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "Racer.Velocity",
+            "min_score": 90,
             "max_score": 100
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "waterwalk": {
+      "type": "palladium:water_walk",
+      "icon": "minecraft:water_bucket",
+      "title": "Water Run",
+      "bar_color": "light_blue",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "description": "Run across water while the lightning trail is active.",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "Racer.Velocity",
+            "min_score": 60,
+            "max_score": 100
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "speed_tornado": {
+      "type": "palladium:command",
+      "icon": "minecraft:white_wool",
+      "title": "Speed Tornado",
+      "bar_color": "white",
+      "list_index": 2,
+      "description": "Spin at super speed to create a devastating tornado that lifts and damages enemies.",
+      "first_tick_commands": [
+        "playsound minecraft:entity.ender_dragon.flap player @a ~ ~ ~ 1.0 0.8",
+        "playsound minecraft:entity.wither.shoot player @a ~ ~ ~ 0.8 1.5"
+      ],
+      "commands": [
+        "execute at @s run particle minecraft:cloud ~ ~0.5 ~ 1.5 0.5 1.5 0.3 50",
+        "execute at @s run particle minecraft:poof ~ ~1.5 ~ 1.2 1.0 1.2 0.2 40",
+        "execute at @s run particle minecraft:sweep_attack ~ ~1 ~ 2 2 2 0.1 30",
+        "execute at @s run particle minecraft:end_rod ~ ~0.5 ~ 2 2.5 2 0.15 60",
+        "execute at @s as @e[type=!minecraft:player,distance=..5] run effect give @s minecraft:levitation 1 5 true",
+        "execute at @s as @e[type=!minecraft:player,distance=..5] run effect give @s minecraft:instant_damage 1 0 true",
+        "execute at @s as @e[type=!minecraft:player,distance=..5] at @s run tp @s ~ ~0.5 ~"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:objective_score",
+            "objective": "Racer.Velocity",
+            "min_score": 70,
+            "max_score": 100
+          },
+          {
+            "type": "palladium:activation",
+            "ticks": 60,
+            "cooldown": 200,
+            "key_type": "key_bind",
+            "key": "key.keyboard.t"
           }
         ],
         "unlocking": []

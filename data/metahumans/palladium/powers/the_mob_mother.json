@@ -1,0 +1,163 @@
+{
+    "name": "The Mob Mother",
+    "description": "The Mob Mother is a powerful entity that has the ability to summon and control mobs. She can call upon an army of minions to do her bidding, making her a formidable opponent in battle.She can also mimic the powers of any mob.",
+    "persistent_data": true,
+    "background": "minecraft:textures/block/stone.png",
+    "icon": "minecraft:spawner",
+    "gui_display_type": "tree",
+    "abilities": {
+        "summon_minions": {
+            "type": "palladium:command",
+            "icon": "minecraft:zombie_spawn_egg",
+            "title": "Summon Minions",
+            "bar_color": "green",
+            "list_index": 0,
+            "description": "Summons a group of mobs to fight for you. The type and strength of the mobs depend on your current health.",
+            "commands": [
+                "execute at @s run summon minecraft:zombie ~ ~ ~ {CustomName:\"\\\"Mob Minion\\\"\",Health:20,Attributes:[{Name:\"generic.attack_damage\",Base:4}],Tags:[\"mob_mother_minion\"]}",
+                "execute at @s run summon minecraft:skeleton ~1 ~ ~ {CustomName:\"\\\"Mob Minion\\\"\",Health:20,Tags:[\"mob_mother_minion\"]}",
+                "execute at @s run summon minecraft:spider ~-1 ~ ~ {CustomName:\"\\\"Mob Minion\\\"\",Health:20,Tags:[\"mob_mother_minion\"]}",
+                "playsound minecraft:block.trial_spawner.spawn_mob player @s ~ ~ ~ 0.8 0.9",
+                "execute at @s run particle minecraft:smoke ~ ~1 ~ 1 0.5 1 0.05 40"
+            ],
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:held",
+                        "cooldown": 80,
+                        "key_type": "key_bind",
+                        "needs_empty_hand": false,
+                        "allow_scrolling_when_crouching": true,
+                        "key": "key.keyboard.f"
+                    }
+                ],
+                "unlocking": []
+            }
+        },
+        "enderman_blink": {
+            "type": "palladium:command",
+            "icon": "minecraft:ender_pearl",
+            "title": "Enderman Blink",
+            "bar_color": "purple",
+            "list_index": 1,
+            "description": "Teleport forward like an Enderman and briefly evade danger.",
+            "commands": [
+                "execute as @s at @s run tp @s ^ ^ ^10",
+                "effect give @s minecraft:resistance 2 0 true",
+                "playsound minecraft:entity.enderman.teleport player @s ~ ~ ~ 0.8 1.0",
+                "execute at @s run particle minecraft:portal ~ ~1 ~ 0.8 0.8 0.8 0.08 60"
+            ],
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:held",
+                        "cooldown": 80,
+                        "key_type": "key_bind",
+                        "needs_empty_hand": false,
+                        "allow_scrolling_when_crouching": true,
+                        "key": "key.keyboard.g"
+                    }
+                ],
+                "unlocking": []
+            }
+        },
+        "witch_hex": {
+            "type": "palladium:command",
+            "icon": "minecraft:fermented_spider_eye",
+            "title": "Witch Hex",
+            "bar_color": "purple",
+            "list_index": 2,
+            "description": "Hex your nearest foe with poison and slowness.",
+            "commands": [
+                "execute at @s run effect give @e[type=!minecraft:player,sort=nearest,limit=1,distance=..10] minecraft:poison 6 0 true",
+                "execute at @s run effect give @e[type=!minecraft:player,sort=nearest,limit=1,distance=..10] minecraft:slowness 6 1 true",
+                "execute at @s run particle minecraft:witch ~ ~1 ~ 0.8 0.6 0.8 0.05 40",
+                "playsound minecraft:entity.witch.throw player @s ~ ~ ~ 0.8 1.0"
+            ],
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:held",
+                        "cooldown": 100,
+                        "key_type": "key_bind",
+                        "needs_empty_hand": false,
+                        "allow_scrolling_when_crouching": true,
+                        "key": "key.keyboard.h"
+                    }
+                ],
+                "unlocking": []
+            }
+        },
+        "creeper_burst": {
+            "type": "palladium:command",
+            "icon": "minecraft:gunpowder",
+            "title": "Creeper Burst",
+            "bar_color": "green",
+            "list_index": 3,
+            "description": "Release a controlled Creeper-like blast around you.",
+            "commands": [
+                "summon minecraft:tnt ~ ~ ~ {Fuse:20}",
+                "effect give @s minecraft:resistance 2 4 true",
+                "playsound minecraft:entity.creeper.primed player @s ~ ~ ~ 1.0 1.0",
+                "execute at @s run particle minecraft:electric_spark ~ ~1 ~ 0.9 0.5 0.9 0.1 50"
+            ],
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:held",
+                        "cooldown": 200,
+                        "key_type": "key_bind",
+                        "needs_empty_hand": false,
+                        "allow_scrolling_when_crouching": true,
+                        "key": "key.keyboard.j"
+                    }
+                ],
+                "unlocking": []
+            }
+        },
+        "zombie_rage": {
+            "type": "palladium:command",
+            "icon": "minecraft:iron_sword",
+            "title": "Zombie Rage",
+            "bar_color": "green",
+            "list_index": 4,
+            "description": "Gain brute-force zombie strength and toughness for a short time.",
+            "commands": [
+                "effect give @s minecraft:strength 8 1 true",
+                "effect give @s minecraft:resistance 8 0 true",
+                "effect give @s minecraft:speed 8 0 true",
+                "playsound minecraft:entity.zombie.ambient player @s ~ ~ ~ 0.8 0.9"
+            ],
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:held",
+                        "cooldown": 140,
+                        "key_type": "key_bind",
+                        "needs_empty_hand": false,
+                        "allow_scrolling_when_crouching": true,
+                        "key": "key.keyboard.r"
+                    }
+                ],
+                "unlocking": []
+            }
+        },
+        "night_vision_passive": {
+            "type": "palladium:command",
+            "icon": "minecraft:spider_eye",
+            "title": "Mob Senses",
+            "bar_color": "green",
+            "list_index": 5,
+            "hidden": true,
+            "hidden_in_bar": true,
+            "description": "Passive senses copied from nocturnal mobs.",
+            "commands": [
+                "effect give @s minecraft:night_vision 3 0 true"
+            ],
+            "conditions": {
+                "enabling": [],
+                "unlocking": []
+            }
+        }
+    }
+}

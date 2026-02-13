@@ -43,8 +43,8 @@
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:held",
-            "cooldown": 10,
+            "type": "palladium:toggle",
+            "cooldown": 0,
             "key_type": "key_bind",
             "needs_empty_hand": false,
             "allow_scrolling_when_crouching": true,
@@ -96,7 +96,7 @@
         "enabling": [
           {
             "type": "palladium:held",
-            "cooldown": 0,
+            "cooldown": 100,
             "key_type": "key_bind",
             "needs_empty_hand": false,
             "allow_scrolling_when_crouching": true,

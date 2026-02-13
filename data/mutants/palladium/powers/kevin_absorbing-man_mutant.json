@@ -38,22 +38,6 @@
             "type": "aeo:apply_dna_from_omniverse_core",
             "property": "alienevodnaapplication_omniverse"
         },
-        "dna_completed": {
-            "type": "reds:apply_dna_from_completed_core",
-            "property": "alienevodnaapplication"
-        },
-        "dna_recalibrated": {
-            "type": "reds:apply_dna_from_recal_core",
-            "property": "alienevodnaapplication"
-        },
-        "dna_ultimate": {
-            "type": "reds:apply_dna_from_ult_core",
-            "property": "alienevodnaapplication"
-        },
-        "dna_reboot": {
-            "type": "reds:apply_dna_from_reboottwo_core",
-            "property": "alienevodnaapplication"
-        },
         "transform": {
             "type": "alienevo:omnitrix_transform",
             "icon": "minecraft:emerald",

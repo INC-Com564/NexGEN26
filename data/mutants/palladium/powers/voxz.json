@@ -1,0 +1,170 @@
+{
+    "name": "VOXZ",
+    "description": "VOXZ is a mad, powerful general who has unlocked their latent mutant ability to become shadow",
+    "persistent_data": true,
+     "background": "minecraft:textures/block/white_wool.png",
+    "icon": "minecraft:skeleton_skull",
+    "gui_display_type": "tree",
+    "abilities": {
+        "shadow_form": {
+            "type": "palladium:invisibility",
+            "icon": "minecraft:echo_shard",
+            "title": "Shadow Form",
+            "bar_color": "black",
+            "list_index": 0,
+            "description": "Transform into a shadowy form, becoming intangible and gaining increased speed. Vulnerable to light.",
+            "conditions": {
+                "enabling": {
+                    "type": "palladium:activation",
+                    "ticks": 300,
+                    "cooldown": 600,
+                    "key_type": "key_bind",
+                    "key": "key.keyboard.z"
+                },
+                "unlocking": [
+                    {
+                        "type": "palladium:brightness_at_position",
+                        "min_brightness": 0,
+                        "max_brightness": 7
+                    }
+                ]
+            }
+        },
+        "shadow_speed": {
+            "type": "palladium:command",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "first_tick_commands": [],
+            "last_tick_commands": [],
+            "commands": [
+                "effect give @s minecraft:speed 1 3 true",
+                "effect give @s minecraft:jump_boost 1 2 true",
+                "execute at @s run particle minecraft:smoke ~ ~1 ~ 0.3 0.5 0.3 0.05 20"
+            ],
+            "conditions": {
+                "enabling": {
+                    "type": "palladium:ability_enabled",
+                    "ability": "shadow_form"
+                }
+            }
+        },
+        "shadow_resistance": {
+            "type": "palladium:command",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "first_tick_commands": [],
+            "last_tick_commands": [],
+            "commands": [
+                "effect give @s minecraft:resistance 1 4 true"
+            ],
+            "conditions": {
+                "enabling": {
+                    "type": "palladium:ability_enabled",
+                    "ability": "shadow_form"
+                }
+            }
+        },
+        "light_vulnerability": {
+            "type": "palladium:command",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "first_tick_commands": [
+                "playsound minecraft:entity.ghast.hurt player @s ~ ~ ~ 0.8 1.5"
+            ],
+            "last_tick_commands": [],
+            "commands": [
+                "effect give @s minecraft:weakness 1 1 true",
+                "effect give @s minecraft:wither 1 1 true",
+                "execute at @s run particle minecraft:soul ~ ~1 ~ 0.5 0.5 0.5 0.1 30"
+            ],
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "shadow_form"
+                    },
+                    {
+                        "type": "palladium:brightness_at_position",
+                        "min_brightness": 12,
+                        "max_brightness": 15
+                    }
+                ]
+            }
+        },
+        "shadow_strike": {
+            "type": "palladium:command",
+            "icon": "minecraft:netherite_sword",
+            "title": "Shadow Strike",
+            "bar_color": "black",
+            "list_index": 1,
+            "description": "Strike from the shadows, dealing heavy damage with a chance to stun the target.",
+            "first_tick_commands": [
+                "playsound minecraft:entity.warden.sonic_boom player @a ~ ~ ~ 1.0 0.8",
+                "execute at @s run particle minecraft:sonic_boom ~ ~1 ~ 0 0 0 0 1"
+            ],
+            "last_tick_commands": [],
+            "commands": [
+                "effect give @s minecraft:strength 1 5 true",
+                "execute at @s run particle minecraft:smoke ~ ~1 ~ 1.0 1.0 1.0 0.2 50",
+                "execute at @s run particle minecraft:soul_fire_flame ~ ~1 ~ 0.8 0.8 0.8 0.1 30",
+                "execute at @s as @e[type=!minecraft:player,distance=..4,limit=1,sort=nearest] run effect give @s minecraft:slowness 3 4 true",
+                "execute at @s as @e[type=!minecraft:player,distance=..4,limit=1,sort=nearest] run effect give @s minecraft:instant_damage 1 1 true"
+            ],
+            "conditions": {
+                "enabling": {
+                    "type": "palladium:activation",
+                    "ticks": 20,
+                    "cooldown": 400,
+                    "key_type": "key_bind",
+                    "key": "key.keyboard.x"
+                },
+                "unlocking": [
+                    {
+                        "type": "palladium:brightness_at_position",
+                        "min_brightness": 0,
+                        "max_brightness": 7
+                    }
+                ]
+            }
+        },
+        "shadow_passive": {
+            "type": "palladium:command",
+            "icon": "minecraft:sculk",
+            "title": "Shadow Essence",
+            "bar_color": "black",
+            "list_index": 2,
+            "hidden": true,
+            "hidden_in_bar": true,
+            "description": "Passive shadow powers - enhanced in darkness.",
+            "first_tick_commands": [],
+            "last_tick_commands": [],
+            "commands": [
+                "effect give @s minecraft:night_vision 15 0 true"
+            ],
+            "conditions": {
+                "enabling": [],
+                "unlocking": []
+            }
+        },
+        "darkness_boost": {
+            "type": "palladium:command",
+            "hidden": true,
+            "hidden_in_bar": true,
+            "first_tick_commands": [],
+            "last_tick_commands": [],
+            "commands": [
+                "effect give @s minecraft:strength 1 0 true",
+                "effect give @s minecraft:speed 1 0 true",
+                "execute at @s run particle minecraft:soul ~ ~0.5 ~ 0.3 0.3 0.3 0.02 5"
+            ],
+            "conditions": {
+                "enabling": {
+                    "type": "palladium:brightness_at_position",
+                    "min_brightness": 0,
+                    "max_brightness": 5
+                },
+                "unlocking": []
+            }
+        }
+    }
+}
