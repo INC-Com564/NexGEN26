@@ -1,0 +1,16 @@
+{
+  "item": {
+    "id": "techpowers:wingpack",
+    "name": "Wingpack",
+    "armor_type": "chestplate",
+    "armor_material": "diamond",
+    "durability": 528,
+    "defense": 6,
+    "toughness": 2.0,
+    "knockback_resistance": 0.0
+  },
+  "model": {
+    "geo_model": "techpowers:models/item/wingpack_converted.geo.json",
+    "texture": "techpowers:textures/models/armor/wingpack.png"
+  }
+}

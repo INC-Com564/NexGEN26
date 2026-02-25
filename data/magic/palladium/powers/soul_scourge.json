@@ -1,0 +1,96 @@
+{
+    "name": "Soul Scourge",
+    "description": "A Ghost Rider/Spawn hybrid who no longer has the man behind the demon to rein them in. Now the entity is free to ride on the land burning the souls of their victims, good or bad.",
+    "persistent_data": true,
+    "background": "minecraft:textures/block/obsidian.png",
+    "icon": "minecraft:nether_star",
+    "gui_display_type": "tree",
+    "abilities": {
+        "soul_burn": {
+            "type": "palladium:command",
+            "icon": "minecraft:flint_and_steel",
+            "title": "Soul Burn",
+            "bar_color": "red",
+            "list_index": 0,
+            "description": "Burn the soul of your target, dealing damage over time and applying a debuff that lowers their defense.",
+            "commands": [
+                "execute at @s run damage @e[type=!minecraft:player,type=!fms:motorcycle,type=!fms:charger,sort=nearest,limit=1,distance=..8] 4 minecraft:magic by @s",
+                "execute at @s run effect give @e[type=!minecraft:player,type=!fms:motorcycle,type=!fms:charger,sort=nearest,limit=1,distance=..8] minecraft:wither 5 1 true",
+                "execute at @s run effect give @e[type=!minecraft:player,type=!fms:motorcycle,type=!fms:charger,sort=nearest,limit=1,distance=..8] minecraft:weakness 5 1 true",
+                "execute at @s run particle minecraft:soul_fire_flame ~ ~1 ~ 0.6 0.6 0.6 0.01 30",
+                "playsound minecraft:entity.blaze.shoot player @s ~ ~ ~ 0.7 0.7"
+            ],
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:held",
+                        "cooldown": 20,
+                        "key_type": "key_bind",
+                        "needs_empty_hand": false,
+                        "allow_scrolling_when_crouching": true,
+                        "key": "key.keyboard.f"
+                    }
+                ],
+                "unlocking": []
+            }
+        },
+        "summon_ride": {
+            "type": "palladium:command",
+            "icon": "minecraft:saddle",
+            "title": "Summon Ride",
+            "bar_color": "red",
+            "list_index": 1,
+            "description": "Summon your demonic steed to ride on. While riding, you gain increased movement speed and the ability to trample enemies.",
+            "commands": [
+                "kill @e[type=fms:motorcycle,tag=soul_scourge_ride,distance=..64]",
+                "kill @e[type=fms:charger,tag=soul_scourge_ride,distance=..64]",
+                "execute at @s unless entity @s[predicate=eop:is_sneaking] run summon fms:motorcycle ~ ~ ~ {Tags:[\"soul_scourge_ride\"]}",
+                "execute at @s if entity @s[predicate=eop:is_sneaking] run summon fms:charger ~ ~ ~ {Tags:[\"soul_scourge_ride\"]}",
+                "execute unless entity @s[predicate=eop:is_sneaking] run ride @s mount @e[type=fms:motorcycle,tag=soul_scourge_ride,sort=nearest,limit=1,distance=..8]",
+                "execute if entity @s[predicate=eop:is_sneaking] run ride @s mount @e[type=fms:charger,tag=soul_scourge_ride,sort=nearest,limit=1,distance=..8]",
+                "playsound minecraft:entity.blaze.shoot player @s ~ ~ ~ 0.8 0.8",
+                "execute at @s run particle minecraft:flame ~ ~1 ~ 0.8 0.3 0.8 0.03 45"
+            ],
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:toggle",
+                        "cooldown": 40,
+                        "key_type": "key_bind",
+                        "needs_empty_hand": false,
+                        "allow_scrolling_when_crouching": true,
+                        "key": "key.keyboard.g"
+                    }
+                ],
+                "unlocking": []
+            }
+        },
+        "dismiss_ride": {
+            "type": "palladium:command",
+            "icon": "minecraft:barrier",
+            "title": "Dismiss Ride",
+            "bar_color": "red",
+            "list_index": 2,
+            "description": "Dismiss your currently summoned demonic ride.",
+            "commands": [
+                "kill @e[type=fms:motorcycle,tag=soul_scourge_ride,distance=..64]",
+                "kill @e[type=fms:charger,tag=soul_scourge_ride,distance=..64]",
+                "playsound minecraft:block.fire.extinguish player @s ~ ~ ~ 0.7 0.9",
+                "execute at @s run particle minecraft:smoke ~ ~1 ~ 0.8 0.3 0.8 0.01 35"
+            ],
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:held",
+                        "cooldown": 10,
+                        "key_type": "key_bind",
+                        "needs_empty_hand": false,
+                        "allow_scrolling_when_crouching": true,
+                        "key": "key.keyboard.h"
+                    }
+                ],
+                "unlocking": []
+            }
+        }
+    }
+}

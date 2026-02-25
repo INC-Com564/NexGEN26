@@ -1,0 +1,198 @@
+{
+  "name": "Vector",
+  "description": "A programmer who was creating a game in VR gets hit with dark matter, gaining some abilities that of a game engine.",
+  "persistent_data": true,
+  "background": "minecraft:textures/block/deepslate.png",
+  "icon": "minecraft:amethyst_shard",
+  "gui_display_type": "tree",
+  "abilities": {
+    "select": {
+      "type": "palladium:command",
+      "icon": "minecraft:target",
+      "title": "Select",
+      "bar_color": "purple",
+      "list_index": 0,
+      "description": "Select multiple targets within a diameter around you. Unlocks other abilities.",
+      "commands": [
+        "tag @e[tag=vector_target] remove vector_target",
+        "execute as @s at @s run tag @e[distance=..10,type=!player] add vector_target",
+        "execute as @s run playsound minecraft:ui.button.click player @s"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:held",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true,
+            "key": "key.keyboard.v"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "scale": {
+      "type": "palladium:size",
+      "icon": "minecraft:repeater",
+      "title": "Scale",
+      "bar_color": "purple",
+      "list_index": 1,
+      "description": "Scale your enemies down to half their size, making them weaker.",
+      "scale": 0.5,
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:toggle",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true,
+            "key": "key.keyboard.c"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "gravity_crush": {
+      "type": "palladium:command",
+      "icon": "minecraft:anvil",
+      "title": "Gravity Crush",
+      "bar_color": "purple",
+      "list_index": 2,
+      "description": "Change gravity for selected targets. Either throw them into the air or crush them with their own weight.",
+      "commands": [
+        "execute as @e[tag=vector_target] at @s run particle dust 0.98 0.165 0.333 1.5 ~ ~ ~ 0.5 0.5 0.5 0 30",
+        "execute as @e[tag=vector_target] run effect give @s minecraft:levitation 3 1",
+        "execute as @e[tag=vector_target] run data modify entity @s Motion[1] set value 1.5d"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:held",
+            "cooldown": 15,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true,
+            "key": "key.keyboard.h"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "gravity_uproar": {
+      "type": "palladium:command",
+      "icon": "minecraft:amethyst_shard",
+      "title": "Gravity Uproar",
+      "bar_color": "gray",
+      "list_index": 4,
+      "description": "Trigger an intense telekinetic upheaval in an area around you.",
+      "commands": [
+        "execute as @e[distance=..12,type=!player,type=!fms:motorcycle,type=!fms:charger] run effect give @s minecraft:slowness 4 2 true",
+        "execute as @e[distance=..12,type=!player,type=!fms:motorcycle,type=!fms:charger] run effect give @s minecraft:levitation 3 1 true",
+        "execute as @e[distance=..12,type=!player,type=!fms:motorcycle,type=!fms:charger] run damage @s 4 minecraft:magic by @p[distance=..20,sort=nearest,limit=1]",
+        "execute at @s run particle minecraft:soul_fire_flame ~ ~1 ~ 2 2 2 0.1 30",
+        "execute at @s run playsound minecraft:block.amethyst_block.break player @s"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:action",
+            "cooldown": 14,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true,
+            "key": "key.keyboard.f"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "zipline": {
+      "type": "palladium:command",
+      "icon": "minecraft:chain",
+      "title": "Zipline",
+      "bar_color": "purple",
+      "list_index": 3,
+      "description": "Select a place in range and drag yourself to that point.",
+      "commands": [
+        "execute as @s at @s run tp @s ^ ^ ^10",
+        "execute as @s at @s run particle dust 0.98 0.165 0.333 1.5 ~ ~ ~ 0.5 0.5 0.5 0 25",
+        "execute as @s run playsound minecraft:entity.enderman.teleport player @s"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:held",
+            "cooldown": 100,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true,
+            "key": "key.keyboard.g"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "select_visual": {
+      "type": "palladium:trail",
+      "icon": "minecraft:target",
+      "title": "Select Aura",
+      "bar_color": "purple",
+      "list_index": 10,
+      "hidden": true,
+      "hidden_in_bar": true,
+      "description": "Purple targeting aura",
+      "trail": "metahumans:select_aura",
+      "conditions": {
+        "enabling": [],
+        "unlocking": []
+      }
+    },
+    "scale_visual": {
+      "type": "palladium:trail",
+      "icon": "minecraft:repeater",
+      "title": "Scale Effect",
+      "bar_color": "purple",
+      "list_index": 11,
+      "hidden": true,
+      "hidden_in_bar": true,
+      "description": "Gold shrinking effect",
+      "trail": "metahumans:scale_effect",
+      "conditions": {
+        "enabling": [],
+        "unlocking": []
+      }
+    },
+    "gravity_visual": {
+      "type": "palladium:trail",
+      "icon": "minecraft:anvil",
+      "title": "Gravity Effect",
+      "bar_color": "purple",
+      "list_index": 12,
+      "hidden": true,
+      "hidden_in_bar": true,
+      "description": "Dark crushing effect",
+      "trail": "metahumans:gravity_crush",
+      "conditions": {
+        "enabling": [],
+        "unlocking": []
+      }
+    },
+    "zipline_visual": {
+      "type": "palladium:trail",
+      "icon": "minecraft:chain",
+      "title": "Zipline Trail",
+      "bar_color": "purple",
+      "list_index": 13,
+      "hidden": true,
+      "hidden_in_bar": true,
+      "description": "Cyan energy zipline",
+      "trail": "metahumans:zipline_trail",
+      "conditions": {
+        "enabling": [],
+        "unlocking": []
+      }
+    }
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "name": "Saber",
+  "description": "A skilled fighter with an iron-tier suit wielding two pistols and a katana. Uses the Room ability to create a 20-block dome where she can manipulate space itself.",
+  "persistent_data": true,
+  "background": "minecraft:textures/block/iron_block.png",
+  "icon": "minecraft:iron_sword",
+  "gui_display_type": "tree",
+  "abilities": {
+    "room": {
+      "type": "palladium:command",
+      "icon": "minecraft:shield",
+      "title": "Room",
+      "bar_color": "gray",
+      "list_index": 0,
+      "description": "Creates a 20-block dome that enables all other abilities. Inside the room, you can manipulate space and matter.",
+      "commands": [
+        "particle minecraft:soul_fire_flame ~ ~10 ~ 8 8 8 0.05 40",
+        "execute at @s run particle minecraft:electric_spark ~ ~5 ~ 10 10 10 0.02 60",
+        "playsound minecraft:entity.wither.spawn player @a ~ ~ ~ 1 2"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:held",
+            "cooldown": 100,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true,
+            "key": "key.keyboard.r"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "swap": {
+      "type": "palladium:command",
+      "icon": "minecraft:ender_pearl",
+      "title": "Swap",
+      "bar_color": "gray",
+      "list_index": 1,
+      "description": "Swap places with another player or mob, changing spaces instantly.",
+      "commands": [
+        "execute as @e[distance=5..20,type=!player,limit=1,sort=nearest] at @s run tp @s @p",
+        "execute as @p at @s run tp @s @e[distance=5..20,type=!player,limit=1,sort=nearest]",
+        "execute at @s run particle minecraft:portal ~ ~ ~ 0.5 0.5 0.5 0.1 20",
+        "execute at @s run playsound minecraft:entity.enderman.teleport player @s"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:held",
+            "cooldown": 10,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true,
+            "key": "key.keyboard.t"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "telekinesis": {
+      "type": "palladium:command",
+      "icon": "telekinesis:textures/icon/telekinesis.png",
+      "title": "Telekinesis",
+      "bar_color": "gray",
+      "list_index": 2,
+      "description": "Lift a nearby target into the air.",
+      "commands": [
+        "execute as @e[distance=..16,type=!player,limit=1,sort=nearest] run effect give @s minecraft:levitation 3 1 true",
+        "execute as @e[distance=..16,type=!player,limit=1,sort=nearest] run effect give @s minecraft:slowness 3 4 true",
+        "execute at @s run particle minecraft:dragon_breath ~ ~1 ~ 1.2 0.8 1.2 0.02 24",
+        "execute at @s run playsound minecraft:entity.evoker.cast_spell player @s ~ ~ ~ 0.7 1.2"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:action",
+            "cooldown": 10,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true,
+            "key": "key.keyboard.x"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "judgment": {
+      "type": "palladium:command",
+      "icon": "minecraft:diamond_sword",
+      "title": "Judgment",
+      "bar_color": "gray",
+      "list_index": 3,
+      "description": "Swift katana slash attack using NBC Heroes ancient katana. Cuts through enemies with precision inspired by Judgment Cut from DMC.",
+      "commands": [
+        "execute as @e[distance=..8,type=!player] run damage @s 12 minecraft:player_attack",
+        "execute at @s run particle minecraft:sweeping_attack ~ ~1 ~ 1.5 1.5 1.5 0 20",
+        "execute at @s run playsound minecraft:entity.player.attack.crit player @s",
+        "execute as @e[distance=..8,type=!player] at @s run tp @s ^ ^ ^-1.5"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:held",
+            "cooldown": 12,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true,
+            "key": "key.keyboard.j"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "hailstorm": {
+      "type": "palladium:command",
+      "icon": "minecraft:snowball",
+      "title": "Hailstorm",
+      "bar_color": "gray",
+      "list_index": 4,
+      "description": "Spin around rapidly, firing bullets in all directions using GreenBoy's Guns. Devastating crowd control.",
+      "commands": [
+        "execute at @s run particle minecraft:flame ~ ~1 ~ 2.5 2.5 2.5 0.15 35",
+        "execute as @e[distance=..10,type=!player] run damage @s 5 minecraft:player_attack",
+        "execute as @e[distance=..10,type=!player] at @s run tp @s ^ ^ ^-1.5",
+        "execute at @s run playsound minecraft:entity.blaze.shoot player @s"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:held",
+            "cooldown": 15,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true,
+            "key": "key.keyboard.h"
+          }
+        ],
+        "unlocking": []
+      }
+    }
+  }
+}

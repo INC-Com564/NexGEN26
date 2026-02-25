@@ -1,0 +1,14 @@
+{
+  "type": "palladium:gradient",
+  "segments": 10,
+  "spacing": 0.15,
+  "lifetime": 8,
+  "size": 1.8,
+  "bloom": 3,
+  "colors": [
+    "#FFD700",
+    "#FFA500",
+    "#FF8C00",
+    "#FF6347"
+  ]
+}
