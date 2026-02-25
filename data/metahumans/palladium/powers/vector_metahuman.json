@@ -80,6 +80,34 @@
         "unlocking": []
       }
     },
+    "gravity_uproar": {
+      "type": "palladium:command",
+      "icon": "minecraft:amethyst_shard",
+      "title": "Gravity Uproar",
+      "bar_color": "gray",
+      "list_index": 4,
+      "description": "Trigger an intense telekinetic upheaval in an area around you.",
+      "commands": [
+        "execute as @e[distance=..12,type=!player,type=!fms:motorcycle,type=!fms:charger] run effect give @s minecraft:slowness 4 2 true",
+        "execute as @e[distance=..12,type=!player,type=!fms:motorcycle,type=!fms:charger] run effect give @s minecraft:levitation 3 1 true",
+        "execute as @e[distance=..12,type=!player,type=!fms:motorcycle,type=!fms:charger] run damage @s 4 minecraft:magic by @p[distance=..20,sort=nearest,limit=1]",
+        "execute at @s run particle minecraft:soul_fire_flame ~ ~1 ~ 2 2 2 0.1 30",
+        "execute at @s run playsound minecraft:block.amethyst_block.break player @s"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:action",
+            "cooldown": 14,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true,
+            "key": "key.keyboard.f"
+          }
+        ],
+        "unlocking": []
+      }
+    },
     "zipline": {
       "type": "palladium:command",
       "icon": "minecraft:chain",

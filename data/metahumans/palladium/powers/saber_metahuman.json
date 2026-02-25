@@ -61,26 +61,26 @@
     },
     "telekinesis": {
       "type": "palladium:command",
-      "icon": "minecraft:amethyst_shard",
+      "icon": "telekinesis:textures/icon/telekinesis.png",
       "title": "Telekinesis",
       "bar_color": "gray",
       "list_index": 2,
-      "description": "Manipulate objects and people within the Room using Echoes of Power. Freeze and levitate enemies with telekinetic force.",
+      "description": "Lift a nearby target into the air.",
       "commands": [
-        "execute as @e[distance=..15,type=!player] run effect give @s minecraft:slowness 4 3 true",
-        "execute as @e[distance=..15,type=!player] run effect give @s minecraft:levitation 3 2 true",
-        "execute at @s run particle minecraft:soul_fire_flame ~ ~1 ~ 2 2 2 0.1 25",
-        "execute at @s run playsound minecraft:block.amethyst_block.break player @s"
+        "execute as @e[distance=..16,type=!player,limit=1,sort=nearest] run effect give @s minecraft:levitation 3 1 true",
+        "execute as @e[distance=..16,type=!player,limit=1,sort=nearest] run effect give @s minecraft:slowness 3 4 true",
+        "execute at @s run particle minecraft:dragon_breath ~ ~1 ~ 1.2 0.8 1.2 0.02 24",
+        "execute at @s run playsound minecraft:entity.evoker.cast_spell player @s ~ ~ ~ 0.7 1.2"
       ],
       "conditions": {
         "enabling": [
           {
-            "type": "palladium:held",
-            "cooldown": 8,
+            "type": "palladium:action",
+            "cooldown": 10,
             "key_type": "key_bind",
             "needs_empty_hand": false,
             "allow_scrolling_when_crouching": true,
-            "key": "key.keyboard.f"
+            "key": "key.keyboard.x"
           }
         ],
         "unlocking": []

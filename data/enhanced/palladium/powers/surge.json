@@ -1,0 +1,239 @@
+{
+  "name": "Surge",
+  "description": "a kid who lives in the scrap yards. Gets bitten by an unknown species of spider. Gaining the ability to fuse metal to themselves and unleash electrical crunts.",
+  "persistent_data": true,
+  "background": "minecraft:textures/block/iron_block.png",
+  "icon": "minecraft:iron_ingot",
+  "gui_display_type": "tree",
+  "abilities": {
+    "metal_fusion": {
+      "type": "palladium:command",
+      "icon": "minecraft:iron_ingot",
+      "title": "Metal Fusion",
+      "bar_color": "gray",
+      "list_index": 0,
+      "description": "Fuse metal to your body, increasing your defense and allowing you to block attacks.",
+      "commands": [
+        "effect give @s minecraft:resistance 10 1 true",
+        "playsound minecraft:block.anvil.use player @s ~ ~ ~ 0.8 0.9",
+        "execute at @s run particle minecraft:block minecraft:iron_block ~ ~1 ~ 0.5 0.5 0.5 0.05 30"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:toggle",
+            "cooldown": 60,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true,
+            "key": "key.keyboard.f"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "master_of_magnetism": {
+      "type": "palladium:command",
+      "icon": "minecraft:lodestone",
+      "title": "Master of Magnetism",
+      "bar_color": "gray",
+      "list_index": 4,
+      "description": "Manipulate metallic targets only: drag armored foes and draw in nearby metal items.",
+      "commands": [
+        "execute at @s run tp @e[type=!minecraft:player,type=!fms:motorcycle,type=!fms:charger,distance=..10,limit=6,sort=nearest,nbt={ArmorItems:[{},{},{id:\"minecraft:iron_chestplate\"}]}] ^ ^ ^-1.2",
+        "execute at @s run tp @e[type=!minecraft:player,type=!fms:motorcycle,type=!fms:charger,distance=..10,limit=6,sort=nearest,nbt={ArmorItems:[{},{},{id:\"minecraft:golden_chestplate\"}]}] ^ ^ ^-1.2",
+        "execute at @s run tp @e[type=!minecraft:player,type=!fms:motorcycle,type=!fms:charger,distance=..10,limit=6,sort=nearest,nbt={ArmorItems:[{},{},{id:\"minecraft:netherite_chestplate\"}]}] ^ ^ ^-1.2",
+        "execute at @s run effect give @e[type=!minecraft:player,type=!fms:motorcycle,type=!fms:charger,distance=..10,limit=6,sort=nearest,nbt={ArmorItems:[{},{},{id:\"minecraft:iron_chestplate\"}]}] minecraft:slowness 3 2 true",
+        "execute at @s run effect give @e[type=!minecraft:player,type=!fms:motorcycle,type=!fms:charger,distance=..10,limit=6,sort=nearest,nbt={ArmorItems:[{},{},{id:\"minecraft:golden_chestplate\"}]}] minecraft:slowness 3 2 true",
+        "execute at @s run effect give @e[type=!minecraft:player,type=!fms:motorcycle,type=!fms:charger,distance=..10,limit=6,sort=nearest,nbt={ArmorItems:[{},{},{id:\"minecraft:netherite_chestplate\"}]}] minecraft:slowness 3 2 true",
+        "execute at @s run damage @e[type=!minecraft:player,type=!fms:motorcycle,type=!fms:charger,distance=..10,limit=6,sort=nearest,nbt={ArmorItems:[{},{},{id:\"minecraft:iron_chestplate\"}]}] 4 minecraft:magic by @s",
+        "execute at @s run damage @e[type=!minecraft:player,type=!fms:motorcycle,type=!fms:charger,distance=..10,limit=6,sort=nearest,nbt={ArmorItems:[{},{},{id:\"minecraft:golden_chestplate\"}]}] 4 minecraft:magic by @s",
+        "execute at @s run damage @e[type=!minecraft:player,type=!fms:motorcycle,type=!fms:charger,distance=..10,limit=6,sort=nearest,nbt={ArmorItems:[{},{},{id:\"minecraft:netherite_chestplate\"}]}] 4 minecraft:magic by @s",
+        "execute at @s run tp @e[type=minecraft:item,distance=..12,nbt={Item:{id:\"minecraft:iron_ingot\"}}] ~ ~1 ~",
+        "execute at @s run tp @e[type=minecraft:item,distance=..12,nbt={Item:{id:\"minecraft:gold_ingot\"}}] ~ ~1 ~",
+        "execute at @s run tp @e[type=minecraft:item,distance=..12,nbt={Item:{id:\"minecraft:netherite_ingot\"}}] ~ ~1 ~",
+        "effect give @s minecraft:resistance 3 1 true",
+        "execute at @s run particle minecraft:electric_spark ~ ~1 ~ 1.3 0.7 1.3 0.03 50",
+        "execute at @s run particle minecraft:block minecraft:iron_block ~ ~1 ~ 1.1 0.6 1.1 0.02 35",
+        "playsound minecraft:block.lodestone.place player @s ~ ~ ~ 0.8 0.9"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:action",
+            "cooldown": 28,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true,
+            "key": "key.keyboard.m"
+          }
+        ],
+        "unlocking": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "metal_fusion"
+          }
+        ]
+      }
+    },
+    "electric_shock": {
+      "type": "palladium:command",
+      "icon": "minecraft:lightning_rod",
+      "title": "Electric Shock",
+      "bar_color": "yellow",
+      "list_index": 1,
+      "description": "Fire an electrokinesis-style bolt that shocks enemies and spreads static to nearby targets.",
+      "commands": [
+        "execute as @e[distance=..8,type=!player,limit=4] run damage @s 4 minecraft:lightning_bolt",
+        "execute as @e[distance=..8,type=!player,limit=4] run effect give @s eop:shock 6 0 true",
+        "execute as @e[distance=..8,type=!player,limit=4] at @s run particle minecraft:electric_spark ~ ~1 ~ 0.5 0.5 0.5 0.3 40",
+        "execute as @e[distance=..8,type=!player,limit=4] at @s run playsound minecraft:entity.lightning_bolt.thunder player @a ~ ~ ~ 0.3 1.5",
+        "particle minecraft:electric_spark ~ ~1 ~ 3 3 3 0.5 100",
+        "playsound minecraft:entity.lightning_bolt.thunder player @s"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:held",
+            "cooldown": 18,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true,
+            "key": "key.keyboard.r"
+          },
+          {
+            "type": "palladium:item_in_slot",
+            "item": {
+              "item": "enhanced:surge_claws"
+            },
+            "slot": "curios:hands"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "spider_sense": {
+      "type": "palladium:command",
+      "icon": "minecraft:spider_eye",
+      "title": "Spider Sense",
+      "bar_color": "yellow",
+      "list_index": 3,
+      "description": "Passive danger sense that sharpens your reflexes whenever threats are nearby.",
+      "commands": [
+        "execute if entity @e[type=minecraft:zombie,distance=..12,limit=1] run effect give @s minecraft:night_vision 2 0 true",
+        "execute if entity @e[type=minecraft:skeleton,distance=..12,limit=1] run effect give @s minecraft:night_vision 2 0 true",
+        "execute if entity @e[type=minecraft:spider,distance=..12,limit=1] run effect give @s minecraft:night_vision 2 0 true",
+        "execute if entity @e[type=minecraft:creeper,distance=..12,limit=1] run effect give @s minecraft:night_vision 2 0 true",
+        "execute if entity @e[type=minecraft:enderman,distance=..12,limit=1] run effect give @s minecraft:night_vision 2 0 true",
+        "execute if entity @e[type=minecraft:witch,distance=..12,limit=1] run effect give @s minecraft:night_vision 2 0 true",
+        "execute if entity @e[type=minecraft:pillager,distance=..16,limit=1] run effect give @s minecraft:night_vision 2 0 true",
+        "execute if entity @e[type=minecraft:vindicator,distance=..16,limit=1] run effect give @s minecraft:night_vision 2 0 true",
+        "execute if entity @e[type=minecraft:ravager,distance=..20,limit=1] run effect give @s minecraft:night_vision 2 0 true",
+        "execute if entity @e[type=minecraft:arrow,distance=..8,limit=1] run effect give @s minecraft:night_vision 2 0 true",
+        "execute if entity @e[type=minecraft:trident,distance=..8,limit=1] run effect give @s minecraft:night_vision 2 0 true",
+        "execute if entity @e[type=minecraft:fireball,distance=..10,limit=1] run effect give @s minecraft:night_vision 2 0 true",
+        "execute if entity @e[type=minecraft:wither_skull,distance=..12,limit=1] run effect give @s minecraft:night_vision 2 0 true",
+        "execute if entity @e[type=minecraft:zombie,distance=..12,limit=1] run effect give @s minecraft:speed 2 0 true",
+        "execute if entity @e[type=minecraft:skeleton,distance=..12,limit=1] run effect give @s minecraft:speed 2 0 true",
+        "execute if entity @e[type=minecraft:spider,distance=..12,limit=1] run effect give @s minecraft:speed 2 0 true",
+        "execute if entity @e[type=minecraft:creeper,distance=..12,limit=1] run effect give @s minecraft:speed 2 0 true",
+        "execute if entity @e[type=minecraft:enderman,distance=..12,limit=1] run effect give @s minecraft:speed 2 0 true",
+        "execute if entity @e[type=minecraft:witch,distance=..12,limit=1] run effect give @s minecraft:speed 2 0 true",
+        "execute if entity @e[type=minecraft:pillager,distance=..16,limit=1] run effect give @s minecraft:speed 2 0 true",
+        "execute if entity @e[type=minecraft:vindicator,distance=..16,limit=1] run effect give @s minecraft:speed 2 0 true",
+        "execute if entity @e[type=minecraft:ravager,distance=..20,limit=1] run effect give @s minecraft:speed 2 0 true",
+        "execute if entity @e[type=minecraft:arrow,distance=..8,limit=1] run effect give @s minecraft:speed 2 1 true",
+        "execute if entity @e[type=minecraft:trident,distance=..8,limit=1] run effect give @s minecraft:speed 2 1 true",
+        "execute if entity @e[type=minecraft:fireball,distance=..10,limit=1] run effect give @s minecraft:speed 2 1 true",
+        "execute if entity @e[type=minecraft:wither_skull,distance=..12,limit=1] run effect give @s minecraft:speed 2 1 true",
+        "execute if entity @e[type=minecraft:zombie,distance=..12,limit=1] run effect give @s minecraft:jump_boost 2 0 true",
+        "execute if entity @e[type=minecraft:skeleton,distance=..12,limit=1] run effect give @s minecraft:jump_boost 2 0 true",
+        "execute if entity @e[type=minecraft:spider,distance=..12,limit=1] run effect give @s minecraft:jump_boost 2 0 true",
+        "execute if entity @e[type=minecraft:creeper,distance=..12,limit=1] run effect give @s minecraft:jump_boost 2 0 true",
+        "execute if entity @e[type=minecraft:enderman,distance=..12,limit=1] run effect give @s minecraft:jump_boost 2 0 true",
+        "execute if entity @e[type=minecraft:witch,distance=..12,limit=1] run effect give @s minecraft:jump_boost 2 0 true",
+        "execute if entity @e[type=minecraft:pillager,distance=..16,limit=1] run effect give @s minecraft:jump_boost 2 0 true",
+        "execute if entity @e[type=minecraft:vindicator,distance=..16,limit=1] run effect give @s minecraft:jump_boost 2 0 true",
+        "execute if entity @e[type=minecraft:ravager,distance=..20,limit=1] run effect give @s minecraft:jump_boost 2 0 true",
+        "execute if entity @e[type=minecraft:arrow,distance=..8,limit=1] at @s run particle minecraft:entity_effect ~ ~1 ~ 0.4 0.2 0.4 0.0 12",
+        "execute if entity @e[type=minecraft:trident,distance=..8,limit=1] at @s run particle minecraft:entity_effect ~ ~1 ~ 0.4 0.2 0.4 0.0 12",
+        "execute if entity @e[type=minecraft:zombie,distance=..12,limit=1] at @s run particle minecraft:entity_effect ~ ~1 ~ 0.4 0.2 0.4 0.0 12",
+        "execute if entity @e[type=minecraft:creeper,distance=..12,limit=1] at @s run particle minecraft:entity_effect ~ ~1 ~ 0.4 0.2 0.4 0.0 12"
+      ],
+      "conditions": {
+        "enabling": [],
+        "unlocking": []
+      }
+    },
+    "spider_sense_panic": {
+      "type": "palladium:command",
+      "icon": "minecraft:spider_eye",
+      "title": "Spider Sense Reflex",
+      "bar_color": "yellow",
+      "list_index": 11,
+      "hidden": true,
+      "hidden_in_bar": true,
+      "description": "Emergency reflex burst when danger hits you.",
+      "commands": [
+        "effect give @s minecraft:speed 2 2 true",
+        "effect give @s minecraft:jump_boost 2 1 true",
+        "effect give @s minecraft:resistance 2 0 true",
+        "playsound minecraft:entity.spider.hurt player @s ~ ~ ~ 0.4 1.6"
+      ],
+      "conditions": {
+        "enabling": [
+          {
+            "type": "eop:damaged",
+            "cooldown": 30
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "wall_climb": {
+      "type": "heroes:wall_climb",
+      "icon": "minecraft:cobweb",
+      "title": "Wall Crawling",
+      "bar_color": "light_blue",
+      "list_index": 2,
+      "description": "Hold to stick to walls and climb surfaces like a spider.",
+      "climb_speed": 0.3,
+      "data_name": "heroes_climb",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:held",
+            "cooldown": 0,
+            "key_type": "key_bind",
+            "needs_empty_hand": false,
+            "allow_scrolling_when_crouching": true,
+            "key": "key.keyboard.j"
+          }
+        ],
+        "unlocking": []
+      }
+    },
+    "wall_climb_feedback": {
+      "type": "palladium:command",
+      "icon": "minecraft:cobweb",
+      "title": "Wall Crawl Active",
+      "bar_color": "light_blue",
+      "list_index": 10,
+      "hidden": true,
+      "hidden_in_bar": true,
+      "description": "Feedback effect while wall crawling is enabled.",
+      "commands": [
+        "execute at @s run particle minecraft:cloud ~ ~0.2 ~ 0.2 0.1 0.2 0.0 3"
+      ],
+      "conditions": {
+        "enabling": [],
+        "unlocking": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "wall_climb"
+          }
+        ]
+      }
+    }
+  }
+}

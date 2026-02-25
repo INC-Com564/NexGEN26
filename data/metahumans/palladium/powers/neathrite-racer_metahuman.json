@@ -51,6 +51,29 @@
         "unlocking": []
       }
     },
+    "speed_mode_idle_aura": {
+      "type": "palladium:command",
+      "icon": "minecraft:lightning_rod",
+      "title": "Speed Mode Idle Aura",
+      "bar_color": "light_blue",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "description": "Subtle electric aura while Speed Mode is active and standing still.",
+      "commands": [
+        "execute at @s run particle minecraft:electric_spark ~ ~1 ~ 0.35 0.55 0.35 0.01 10",
+        "execute at @s run particle minecraft:dust 0.75 0.44 1.0 1 ~ ~1 ~ 0.25 0.4 0.25 0.01 6",
+        "execute at @s run particle minecraft:entity_effect ~ ~1 ~ 0.25 0.4 0.25 0.0 4"
+      ],
+      "conditions": {
+        "enabling": [],
+        "unlocking": [
+          {
+            "type": "palladium:ability_enabled",
+            "ability": "speed_mode"
+          }
+        ]
+      }
+    },
     "velocity_up": {
       "type": "palladium:command",
       "hidden": true,
@@ -136,14 +159,14 @@
       "hidden": true,
       "hidden_in_bar": true,
       "commands": [
-        "execute at @s run particle minecraft:dust 1 0.84 0 1 ~ ~1 ~ 1 1 1 0.1 40"
+        "execute at @s run particle minecraft:dust 1 0.84 0 1 ~ ~1 ~ 0.7 0.7 0.7 0.06 20"
       ],
       "conditions": {
         "enabling": [
           {
             "type": "palladium:objective_score",
             "objective": "Racer.Velocity",
-            "min_score": 3,
+            "min_score": 60,
             "max_score": 89
           }
         ],
@@ -155,7 +178,7 @@
       "hidden": true,
       "hidden_in_bar": true,
       "commands": [
-        "execute at @s run particle minecraft:dust 0.75 0.44 1.0 1 ~ ~1 ~ 1 1 1 0.1 40"
+        "execute at @s run particle minecraft:dust 0.75 0.44 1.0 1 ~ ~1 ~ 0.8 0.8 0.8 0.08 24"
       ],
       "conditions": {
         "enabling": [
@@ -221,6 +244,9 @@
             "objective": "Racer.Velocity",
             "min_score": 80,
             "max_score": 100
+          },
+          {
+            "type": "palladium:is_moving"
           }
         ],
         "unlocking": []
@@ -315,6 +341,9 @@
             "objective": "Racer.Velocity",
             "min_score": 70,
             "max_score": 100
+          },
+          {
+            "type": "palladium:is_moving"
           }
         ],
         "unlocking": []
@@ -387,6 +416,9 @@
             "objective": "Racer.Velocity",
             "min_score": 60,
             "max_score": 89
+          },
+          {
+            "type": "palladium:is_moving"
           }
         ],
         "unlocking": []
@@ -409,6 +441,9 @@
             "objective": "Racer.Velocity",
             "min_score": 90,
             "max_score": 100
+          },
+          {
+            "type": "palladium:is_moving"
           }
         ],
         "unlocking": []
@@ -434,25 +469,44 @@
         "unlocking": []
       }
     },
+    "fire_immunity": {
+      "type": "palladium:command",
+      "icon": "minecraft:lava_bucket",
+      "title": "Fire Immunity",
+      "bar_color": "orange",
+      "hidden": true,
+      "hidden_in_bar": true,
+      "description": "Passive immunity to fire and lava damage.",
+      "commands": [
+        "effect give @s minecraft:fire_resistance 2 0 true"
+      ],
+      "conditions": {
+        "enabling": [],
+        "unlocking": []
+      }
+    },
     "speed_tornado": {
       "type": "palladium:command",
       "icon": "minecraft:white_wool",
       "title": "Speed Tornado",
       "bar_color": "white",
       "list_index": 2,
-      "description": "Spin at super speed to create a devastating tornado that lifts and damages enemies.",
+      "description": "Hold to generate a real tornado column that drags, lifts, and shreds nearby enemies.",
       "first_tick_commands": [
         "playsound minecraft:entity.ender_dragon.flap player @a ~ ~ ~ 1.0 0.8",
         "playsound minecraft:entity.wither.shoot player @a ~ ~ ~ 0.8 1.5"
       ],
       "commands": [
-        "execute at @s run particle minecraft:cloud ~ ~0.5 ~ 1.5 0.5 1.5 0.3 50",
-        "execute at @s run particle minecraft:poof ~ ~1.5 ~ 1.2 1.0 1.2 0.2 40",
-        "execute at @s run particle minecraft:sweep_attack ~ ~1 ~ 2 2 2 0.1 30",
-        "execute at @s run particle minecraft:end_rod ~ ~0.5 ~ 2 2.5 2 0.15 60",
-        "execute at @s as @e[type=!minecraft:player,distance=..5] run effect give @s minecraft:levitation 1 5 true",
-        "execute at @s as @e[type=!minecraft:player,distance=..5] run effect give @s minecraft:instant_damage 1 0 true",
-        "execute at @s as @e[type=!minecraft:player,distance=..5] at @s run tp @s ~ ~0.5 ~"
+        "effect give @s minecraft:resistance 1 1 true",
+        "execute at @s run particle minecraft:cloud ~ ~0.4 ~ 1.8 0.4 1.8 0.25 70",
+        "execute at @s run particle minecraft:cloud ~ ~1.4 ~ 1.4 0.35 1.4 0.2 55",
+        "execute at @s run particle minecraft:cloud ~ ~2.4 ~ 1.0 0.3 1.0 0.15 45",
+        "execute at @s run particle minecraft:poof ~ ~1.0 ~ 1.2 1.6 1.2 0.15 45",
+        "execute at @s run particle minecraft:sweep_attack ~ ~1.2 ~ 2.2 2.2 2.2 0.1 35",
+        "execute at @s run particle minecraft:end_rod ~ ~1.2 ~ 1.5 2.0 1.5 0.07 35",
+        "execute at @s as @e[type=!minecraft:player,type=!fms:motorcycle,type=!fms:charger,distance=..7] at @s facing entity @p[distance=..20,sort=nearest,limit=1] eyes run tp @s ^ ^ ^0.9",
+        "execute at @s as @e[type=!minecraft:player,type=!fms:motorcycle,type=!fms:charger,distance=..7] run effect give @s minecraft:levitation 1 2 true",
+        "execute at @s as @e[type=!minecraft:player,type=!fms:motorcycle,type=!fms:charger,distance=..7] run damage @s 3 minecraft:magic by @p[distance=..20,sort=nearest,limit=1]"
       ],
       "conditions": {
         "enabling": [
@@ -463,9 +517,8 @@
             "max_score": 100
           },
           {
-            "type": "palladium:activation",
-            "ticks": 60,
-            "cooldown": 200,
+            "type": "palladium:held",
+            "cooldown": 140,
             "key_type": "key_bind",
             "key": "key.keyboard.t"
           }
